@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Life
+  - Clock
+  - Key
+  - OOB
   layers:
   - Default
   - TransparentFX

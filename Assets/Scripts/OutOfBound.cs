@@ -13,16 +13,20 @@ public class OutOfBound : MonoBehaviour {
         startTransform = new Vector3(Player.position.x, Player.position.y, Player.position.z);  
     }
 
+    public void killPlayer()
+    {
+        Player.gameObject.GetComponent<PlayerScript>().nbLife--;
+        Player.gameObject.GetComponent<PlayerScript>().UpdateLifeNbr();
+        if (Player.gameObject.GetComponent<PlayerScript>().nbLife == 0)
+            SceneManager.LoadScene("Main-Menu");
+        Player.position = new Vector3(startTransform.x, startTransform.y, startTransform.z);
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerScript>().nbLife--;
-            other.gameObject.GetComponent<PlayerScript>().UpdateLifeNbr();
-            if (other.gameObject.GetComponent<PlayerScript>().nbLife == 0)
-                SceneManager.LoadScene("Main-Menu");
-            Debug.Log("Ball went out of bounds");
-            Player.position = new Vector3(startTransform.x, startTransform.y, startTransform.z);
+            killPlayer();
         }
     }
 }

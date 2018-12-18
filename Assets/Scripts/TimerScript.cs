@@ -10,9 +10,10 @@ public class TimerScript : MonoBehaviour {
     public int second;
     private float timeLeft;
     public TextMeshProUGUI timerText;
-
+    private OutOfBound oob;
     void Start ()
     {
+        oob = GameObject.FindGameObjectWithTag("OOB").GetComponent<OutOfBound>();
         timeLeft = minute * 60 + second;
 	}
 	
@@ -30,8 +31,9 @@ public class TimerScript : MonoBehaviour {
     {
         if (timeLeft <= 0)
         {
-            timeLeft = 0;
+            timeLeft = minute * 60 + second;
             UpdateTimeText();
+            oob.killPlayer();
             return;
         }
         timeLeft -= Time.deltaTime;
