@@ -9,6 +9,7 @@ TagManager:
   - Clock
   - Key
   - OOB
+  - Terrain
   layers:
   - Default
   - TransparentFX
