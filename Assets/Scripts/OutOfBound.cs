@@ -20,8 +20,10 @@ public class OutOfBound : MonoBehaviour {
         if (Player.gameObject.GetComponent<PlayerScript>().nbLife == 0)
             SceneManager.LoadScene("Main-Menu");
         Player.position = new Vector3(startTransform.x, startTransform.y, startTransform.z);
+        Player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")

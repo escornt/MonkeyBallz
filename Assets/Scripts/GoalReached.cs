@@ -7,6 +7,8 @@ public class GoalReached : MonoBehaviour
 {
     public GameObject goalText;
     public string nextLevel = "Level2";
+    public AudioSource yaySound;
+    private bool played = false;
 
     private void Start()
     {
@@ -20,6 +22,11 @@ public class GoalReached : MonoBehaviour
         {
             if (other.gameObject.GetComponent<PlayerScript>().nbKey > 0)
             {
+                if (yaySound && !played)
+                {
+                    yaySound.Play();
+                    played = true;
+                }
                 goalText.SetActive(true);
                 StartCoroutine(LoadLevelAfterDelay(3.0f));
             }
